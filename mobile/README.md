@@ -1,78 +1,70 @@
-# # Cinemanic 🎬
+# Cinemanic Mobile - Flutter Application
 
-**Cinemanic** is a sleek and modern movie discovery application designed to provide users with up-to-date information on the latest films, trending shows, and timeless classics. Explore ratings, cast details, and trailers all in one place.
+Cinemanic is a sleek, modern movie and TV show discovery application built with Flutter. It provides users with a premium experience for browsing trending content, searching for movies, and managing their watchlists.
 
----
+## 🚀 Getting Started
 
-## 🖼️ Banner
+Follow these instructions to get the mobile application up and running on your local machine for development and testing.
 
-![Cinemanic Banner](/assets/images/banner.png)
+### Prerequisites
 
-## 🚀 Download & Installation
+- [Flutter SDK](https://docs.flutter.dev/get-started/install) (latest stable version recommended)
+- [Dart SDK](https://dart.dev/get-started/sdk)
+- Android Studio / VS Code with Flutter extension
+- An Android Emulator, iOS Simulator, or a physical device
 
-Get the latest version of the app directly on your Android device:
+### Installation
 
-👉 **[Download Cinemanic APK](https://github.com/Suramyavns/cinemanic/releases/latest)**
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Suramyavns/Cinemanic.git
+    cd cinemanic/mobile
+    ```
 
----
+2.  **Install dependencies:**
+    ```bash
+    flutter pub get
+    ```
 
-## ✨ Features
+3.  **Environment Setup:**
+    Create a `.env` file in the `mobile` root directory and add the following variables:
+    ```env
+    SERVER_URL=https://cinemanic.vercel.app
+    FIREBASE_WEB_CLIENT_ID=your_firebase_web_client_id
+    IMAGE_BASE_URL=https://image.tmdb.org/t/p/w500
+    ```
+    *(Note: Replace `your_firebase_web_client_id` with your actual Firebase Web Client ID found in your Firebase console).*
 
-- **Trending & Popular:** Stay updated with what's currently hot in the world of cinema.
-- **Search Functionality:** Find specific movies or TV shows quickly.
-- **Detailed Insights:** View ratings, genres, release dates, and plot summaries.
-- **Cast & Crew:** Explore profiles of the actors and directors behind your favorite films.
-- **Watch Trailers:** Integrated video player to watch the latest trailers.
-- **Dark Mode Support:** A beautiful, eye-friendly interface for night browsing.
+4.  **Run the application:**
+    ```bash
+    # Run in debug mode
+    flutter run
+    ```
 
----
+## 🛠️ Environment Variables
 
-## 🛠️ Built With
+The application uses a `.env` file for configuration. Ensure the following keys are present:
 
-- **Language:** Dart
-- **API:** [TMDB API](https://www.themoviedb.org/documentation/api) (The Movie Database)
-- **UI Framework:** Flutter
+| Key | Description | Example Value |
+| :--- | :--- | :--- |
+| `SERVER_URL` | The base URL for the backend API
+| `FIREBASE_WEB_CLIENT_ID` | OAuth Client ID for Google Sign-In
+| `IMAGE_BASE_URL` | Base URL for fetching TMDb images
 
----
+## 📱 Features
 
-## 🛠️ Local Development
+- **Modern UI**: "Adventure Dark" design system for a premium feel.
+- **Content Discovery**: Browse trending movies and TV shows via TMDb integration.
+- **Authentication**: Secure login using Firebase (Phone & Google).
+- **Watchlist**: Manage your personal list of content to watch.
+- **Responsive Design**: Optimized for various screen sizes using `LayoutBuilder`.
 
-If you want to contribute or build the project from source:
+## 📂 Project Structure
 
-1. **Clone the repository:**
-
-```bash
-git clone https://github.com/Suramyavns/cinemanic.git
-
-```
-
-2. **Open in Android Studio/VS Code.**
-3. **Get an API Key:** Sign up at [TMDB](https://www.themoviedb.org/) to get your API key.
-4. **Setup Environment:** Add your API key to the `.env` or the designated config file.
-5. **Run the app:** Run the app through your IDE.
-
----
-
-## 🤝 Contributing
-
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📜 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-## 📧 Contact
-
-**Suramya** - [@Suramyavns](https://github.com/Suramyavns)
-
-Project Link: [https://github.com/Suramyavns/cinemanic](https://github.com/Suramyavns/cinemanic)
+- `lib/`: Main source code.
+    - `screens/`: UI screens (Home, Profile, Search, etc.).
+    - `widgets/`: Reusable UI components.
+    - `services/`: API and Firebase service logic.
+    - `models/`: Data models for movies, shows, etc.
+- `assets/`: Images, fonts, and local resources.
+- `android/` & `ios/`: Platform-specific configurations.
