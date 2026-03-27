@@ -20,12 +20,12 @@ class TmdbSearchResponse {
 
   factory TmdbSearchResponse.fromJson(Map<String, dynamic> json) {
     return TmdbSearchResponse(
-      page: json['page'] as int,
-      results: (json['results'] as List<dynamic>)
+      page: json['page'] as int? ?? 0,
+      results: (json['results'] as List<dynamic>? ?? [])
           .map((e) => TmdbMedia.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalPages: json['total_pages'] as int,
-      totalResults: json['total_results'] as int,
+      totalPages: json['total_pages'] as int? ?? 0,
+      totalResults: json['total_results'] as int? ?? 0,
     );
   }
 
@@ -250,7 +250,7 @@ class BelongsToCollection {
 
   factory BelongsToCollection.fromJson(Map<String, dynamic> json) =>
       BelongsToCollection(
-        id: json['id'] as int,
+        id: json['id'] as int? ?? 0,
         name: json['name'] as String? ?? '',
         posterPath: json['poster_path'] as String?,
         backdropPath: json['backdrop_path'] as String?,
@@ -271,7 +271,7 @@ class Genre {
   const Genre({required this.id, required this.name});
 
   factory Genre.fromJson(Map<String, dynamic> json) =>
-      Genre(id: json['id'] as int, name: json['name'] as String);
+      Genre(id: json['id'] as int? ?? 0, name: json['name'] as String? ?? '');
 
   Map<String, dynamic> toJson() => {'id': id, 'name': name};
 }
@@ -380,7 +380,7 @@ class Episode {
       stillPath != null ? 'https://image.tmdb.org/t/p/w300$stillPath' : null;
 
   factory Episode.fromJson(Map<String, dynamic> json) => Episode(
-    id: json['id'] as int,
+    id: json['id'] as int? ?? 0,
     name: json['name'] as String? ?? '',
     overview: json['overview'] as String? ?? '',
     voteAverage: (json['vote_average'] as num? ?? 0).toDouble(),
@@ -553,7 +553,7 @@ class CreditResponse {
 
   factory CreditResponse.fromJson(Map<String, dynamic> json) {
     return CreditResponse(
-      id: json['id'] as int,
+      id: json['id'] as int? ?? 0,
       cast:
           (json['cast'] as List<dynamic>?)
               ?.map((e) => Cast.fromJson(e as Map<String, dynamic>))
@@ -591,7 +591,7 @@ class Cast {
 
   factory Cast.fromJson(Map<String, dynamic> json) {
     return Cast(
-      id: json['id'] as int,
+      id: json['id'] as int? ?? 0,
       name: json['name'] as String? ?? '',
       originalName: json['original_name'] as String? ?? '',
       character: json['character'] as String? ?? '',
@@ -622,7 +622,7 @@ class Crew {
 
   factory Crew.fromJson(Map<String, dynamic> json) {
     return Crew(
-      id: json['id'] as int,
+      id: json['id'] as int? ?? 0,
       name: json['name'] as String? ?? '',
       department: json['department'] as String? ?? '',
       job: json['job'] as String? ?? '',
@@ -760,22 +760,22 @@ class Movie {
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
-      adult: json['adult'] as bool,
+      adult: json['adult'] as bool? ?? false,
       backdropPath: json['backdrop_path'] as String?,
-      genreIds: (json['genre_ids'] as List<dynamic>)
+      genreIds: (json['genre_ids'] as List<dynamic>? ?? [])
           .map((e) => e as int)
           .toList(),
-      id: json['id'] as int,
-      originalLanguage: json['original_language'] as String,
-      originalTitle: json['original_title'] as String,
-      overview: json['overview'] as String,
-      popularity: (json['popularity'] as num).toDouble(),
+      id: json['id'] as int? ?? 0,
+      originalLanguage: json['original_language'] as String? ?? '',
+      originalTitle: json['original_title'] as String? ?? '',
+      overview: json['overview'] as String? ?? '',
+      popularity: (json['popularity'] as num? ?? 0).toDouble(),
       posterPath: json['poster_path'] as String?,
       releaseDate: json['release_date'] as String? ?? '',
-      title: json['title'] as String,
-      video: json['video'] as bool,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: json['vote_count'] as int,
+      title: json['title'] as String? ?? '',
+      video: json['video'] as bool? ?? false,
+      voteAverage: (json['vote_average'] as num? ?? 0).toDouble(),
+      voteCount: json['vote_count'] as int? ?? 0,
     );
   }
 
@@ -872,43 +872,43 @@ class MovieDetail {
 
   factory MovieDetail.fromJson(Map<String, dynamic> json) {
     return MovieDetail(
-      adult: json['adult'] as bool,
+      adult: json['adult'] as bool? ?? false,
       backdropPath: json['backdrop_path'] as String?,
       belongsToCollection: json['belongs_to_collection'] != null
           ? BelongsToCollection.fromJson(
               json['belongs_to_collection'] as Map<String, dynamic>,
             )
           : null,
-      budget: json['budget'] as int,
-      genres: (json['genres'] as List<dynamic>)
+      budget: json['budget'] as int? ?? 0,
+      genres: (json['genres'] as List<dynamic>? ?? [])
           .map((e) => Genre.fromJson(e as Map<String, dynamic>))
           .toList(),
       homepage: json['homepage'] as String?,
-      id: json['id'] as int,
+      id: json['id'] as int? ?? 0,
       imdbId: json['imdb_id'] as String?,
-      originalLanguage: json['original_language'] as String,
-      originalTitle: json['original_title'] as String,
-      overview: json['overview'] as String,
-      popularity: (json['popularity'] as num).toDouble(),
+      originalLanguage: json['original_language'] as String? ?? '',
+      originalTitle: json['original_title'] as String? ?? '',
+      overview: json['overview'] as String? ?? '',
+      popularity: (json['popularity'] as num? ?? 0).toDouble(),
       posterPath: json['poster_path'] as String?,
-      productionCompanies: (json['production_companies'] as List<dynamic>)
+      productionCompanies: (json['production_companies'] as List<dynamic>? ?? [])
           .map((e) => ProductionCompany.fromJson(e as Map<String, dynamic>))
           .toList(),
-      productionCountries: (json['production_countries'] as List<dynamic>)
+      productionCountries: (json['production_countries'] as List<dynamic>? ?? [])
           .map((e) => ProductionCountry.fromJson(e as Map<String, dynamic>))
           .toList(),
       releaseDate: json['release_date'] as String? ?? '',
-      revenue: json['revenue'] as int,
-      runtime: json['runtime'] as int,
-      spokenLanguages: (json['spoken_languages'] as List<dynamic>)
+      revenue: json['revenue'] as int? ?? 0,
+      runtime: json['runtime'] as int? ?? 0,
+      spokenLanguages: (json['spoken_languages'] as List<dynamic>? ?? [])
           .map((e) => SpokenLanguage.fromJson(e as Map<String, dynamic>))
           .toList(),
-      status: json['status'] as String,
+      status: json['status'] as String? ?? '',
       tagline: json['tagline'] as String?,
-      title: json['title'] as String,
-      video: json['video'] as bool,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: json['vote_count'] as int,
+      title: json['title'] as String? ?? '',
+      video: json['video'] as bool? ?? false,
+      voteAverage: (json['vote_average'] as num? ?? 0).toDouble(),
+      voteCount: json['vote_count'] as int? ?? 0,
     );
   }
 
@@ -956,12 +956,12 @@ class TopRatedTvResponse {
 
   factory TopRatedTvResponse.fromJson(Map<String, dynamic> json) {
     return TopRatedTvResponse(
-      page: json['page'] as int,
-      results: (json['results'] as List<dynamic>)
+      page: json['page'] as int? ?? 0,
+      results: (json['results'] as List<dynamic>? ?? [])
           .map((item) => TvShow.fromJson(item as Map<String, dynamic>))
           .toList(),
-      totalPages: json['total_pages'] as int,
-      totalResults: json['total_results'] as int,
+      totalPages: json['total_pages'] as int? ?? 0,
+      totalResults: json['total_results'] as int? ?? 0,
     );
   }
 
@@ -1018,21 +1018,21 @@ class TvShow {
     return TvShow(
       backdropPath: json['backdrop_path'] as String?,
       firstAirDate: json['first_air_date'] as String? ?? '',
-      genreIds: (json['genre_ids'] as List<dynamic>)
+      genreIds: (json['genre_ids'] as List<dynamic>? ?? [])
           .map((e) => e as int)
           .toList(),
-      id: json['id'] as int,
-      name: json['name'] as String,
-      originCountry: (json['origin_country'] as List<dynamic>)
+      id: json['id'] as int? ?? 0,
+      name: json['name'] as String? ?? '',
+      originCountry: (json['origin_country'] as List<dynamic>? ?? [])
           .map((e) => e as String)
           .toList(),
-      originalLanguage: json['original_language'] as String,
-      originalName: json['original_name'] as String,
-      overview: json['overview'] as String,
-      popularity: (json['popularity'] as num).toDouble(),
+      originalLanguage: json['original_language'] as String? ?? '',
+      originalName: json['original_name'] as String? ?? '',
+      overview: json['overview'] as String? ?? '',
+      popularity: (json['popularity'] as num? ?? 0).toDouble(),
       posterPath: json['poster_path'] as String?,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: json['vote_count'] as int,
+      voteAverage: (json['vote_average'] as num? ?? 0).toDouble(),
+      voteCount: json['vote_count'] as int? ?? 0,
     );
   }
 
@@ -1144,22 +1144,22 @@ class TvShowDetail {
 
   factory TvShowDetail.fromJson(Map<String, dynamic> json) {
     return TvShowDetail(
-      adult: json['adult'] as bool,
+      adult: json['adult'] as bool? ?? false,
       backdropPath: json['backdrop_path'] as String?,
-      createdBy: (json['created_by'] as List<dynamic>)
+      createdBy: (json['created_by'] as List<dynamic>? ?? [])
           .map((e) => CreatedBy.fromJson(e as Map<String, dynamic>))
           .toList(),
-      episodeRunTime: (json['episode_run_time'] as List<dynamic>)
+      episodeRunTime: (json['episode_run_time'] as List<dynamic>? ?? [])
           .map((e) => e as int)
           .toList(),
       firstAirDate: json['first_air_date'] as String? ?? '',
-      genres: (json['genres'] as List<dynamic>)
+      genres: (json['genres'] as List<dynamic>? ?? [])
           .map((e) => Genre.fromJson(e as Map<String, dynamic>))
           .toList(),
       homepage: json['homepage'] as String?,
-      id: json['id'] as int,
-      inProduction: json['in_production'] as bool,
-      languages: (json['languages'] as List<dynamic>)
+      id: json['id'] as int? ?? 0,
+      inProduction: json['in_production'] as bool? ?? false,
+      languages: (json['languages'] as List<dynamic>? ?? [])
           .map((e) => e as String)
           .toList(),
       lastAirDate: json['last_air_date'] as String? ?? '',
@@ -1168,42 +1168,42 @@ class TvShowDetail {
               json['last_episode_to_air'] as Map<String, dynamic>,
             )
           : null,
-      name: json['name'] as String,
+      name: json['name'] as String? ?? '',
       nextEpisodeToAir: json['next_episode_to_air'] != null
           ? Episode.fromJson(
               json['next_episode_to_air'] as Map<String, dynamic>,
             )
           : null,
-      networks: (json['networks'] as List<dynamic>)
+      networks: (json['networks'] as List<dynamic>? ?? [])
           .map((e) => Network.fromJson(e as Map<String, dynamic>))
           .toList(),
-      numberOfEpisodes: json['number_of_episodes'] as int,
-      numberOfSeasons: json['number_of_seasons'] as int,
-      originCountry: (json['origin_country'] as List<dynamic>)
+      numberOfEpisodes: json['number_of_episodes'] as int? ?? 0,
+      numberOfSeasons: json['number_of_seasons'] as int? ?? 0,
+      originCountry: (json['origin_country'] as List<dynamic>? ?? [])
           .map((e) => e as String)
           .toList(),
-      originalLanguage: json['original_language'] as String,
-      originalName: json['original_name'] as String,
-      overview: json['overview'] as String,
-      popularity: (json['popularity'] as num).toDouble(),
+      originalLanguage: json['original_language'] as String? ?? '',
+      originalName: json['original_name'] as String? ?? '',
+      overview: json['overview'] as String? ?? '',
+      popularity: (json['popularity'] as num? ?? 0).toDouble(),
       posterPath: json['poster_path'] as String?,
-      productionCompanies: (json['production_companies'] as List<dynamic>)
+      productionCompanies: (json['production_companies'] as List<dynamic>? ?? [])
           .map((e) => ProductionCompany.fromJson(e as Map<String, dynamic>))
           .toList(),
-      productionCountries: (json['production_countries'] as List<dynamic>)
+      productionCountries: (json['production_countries'] as List<dynamic>? ?? [])
           .map((e) => ProductionCountry.fromJson(e as Map<String, dynamic>))
           .toList(),
-      seasons: (json['seasons'] as List<dynamic>)
+      seasons: (json['seasons'] as List<dynamic>? ?? [])
           .map((e) => Season.fromJson(e as Map<String, dynamic>))
           .toList(),
-      spokenLanguages: (json['spoken_languages'] as List<dynamic>)
+      spokenLanguages: (json['spoken_languages'] as List<dynamic>? ?? [])
           .map((e) => SpokenLanguage.fromJson(e as Map<String, dynamic>))
           .toList(),
-      status: json['status'] as String,
+      status: json['status'] as String? ?? '',
       tagline: json['tagline'] as String?,
-      type: json['type'] as String,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: json['vote_count'] as int,
+      type: json['type'] as String? ?? '',
+      voteAverage: (json['vote_average'] as num? ?? 0).toDouble(),
+      voteCount: json['vote_count'] as int? ?? 0,
     );
   }
 
@@ -1263,10 +1263,10 @@ class CreatedBy {
       : null;
 
   factory CreatedBy.fromJson(Map<String, dynamic> json) => CreatedBy(
-    id: json['id'] as int,
-    creditId: json['credit_id'] as String,
-    name: json['name'] as String,
-    gender: json['gender'] as int,
+    id: json['id'] as int? ?? 0,
+    creditId: json['credit_id'] as String? ?? '',
+    name: json['name'] as String? ?? '',
+    gender: json['gender'] as int? ?? 0,
     profilePath: json['profile_path'] as String?,
   );
 
@@ -1291,9 +1291,9 @@ class Country {
   });
 
   factory Country.fromJson(Map<String, dynamic> json) => Country(
-    iso31661: json['iso_3166_1'] as String,
-    englishName: json['english_name'] as String,
-    nativeName: json['native_name'] as String,
+    iso31661: json['iso_3166_1'] as String? ?? '',
+    englishName: json['english_name'] as String? ?? '',
+    nativeName: json['native_name'] as String? ?? '',
   );
 
   Map<String, dynamic> toJson() => {
@@ -1505,11 +1505,11 @@ class PersonCredits {
 
   factory PersonCredits.fromJson(Map<String, dynamic> json) {
     return PersonCredits(
-      id: json['id'] as int,
-      cast: (json['cast'] as List<dynamic>)
+      id: json['id'] as int? ?? 0,
+      cast: (json['cast'] as List<dynamic>? ?? [])
           .map((e) => CastCredit.fromJson(e as Map<String, dynamic>))
           .toList(),
-      crew: (json['crew'] as List<dynamic>)
+      crew: (json['crew'] as List<dynamic>? ?? [])
           .map((e) => CrewCredit.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -1731,7 +1731,7 @@ sealed class CrewCredit extends BaseCredit {
     return switch (mediaType) {
       'movie' => MovieCrewCredit.fromJson(json),
       'tv' => TvCrewCredit.fromJson(json),
-      _ => throw ArgumentError('Unknown media_type: $mediaType'),
+      _ => MovieCrewCredit.fromJson(json), // Fallback to MovieCrewCredit instead of throwing
     };
   }
 
@@ -1915,7 +1915,7 @@ sealed class CastCredit extends BaseCredit {
     return switch (mediaType) {
       'movie' => MovieCastCredit.fromJson(json),
       'tv' => TvCastCredit.fromJson(json),
-      _ => throw ArgumentError('Unknown media_type: $mediaType'),
+      _ => MovieCastCredit.fromJson(json), // Fallback instead of throwing
     };
   }
 

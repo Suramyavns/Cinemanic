@@ -13,9 +13,9 @@ class WatchHistoryItem {
 
   factory WatchHistoryItem.fromJson(Map<String, dynamic> json) {
     return WatchHistoryItem(
-      id: json['mediaId'] as int,
-      type: json['type'] as String,
-      title: json['title'] as String,
+      id: (json['mediaId'] as num? ?? 0).toInt(),
+      type: json['type'] as String? ?? '',
+      title: json['title'] as String? ?? '',
       posterPath: json['posterPath'] as String? ?? '',
     );
   }

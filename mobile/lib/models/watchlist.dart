@@ -15,9 +15,9 @@ class WatchList {
 
   factory WatchList.fromJson(Map<String, dynamic> json) {
     return WatchList(
-      mediaId: (json['mediaId'] as num).toInt(),
-      type: json['type'] as String,
-      title: json['title'] as String,
+      mediaId: (json['mediaId'] as num? ?? 0).toInt(),
+      type: json['type'] as String? ?? '',
+      title: json['title'] as String? ?? '',
       posterPath: json['posterPath'] as String?,
       backdropPath: json['backdropPath'] as String?,
     );

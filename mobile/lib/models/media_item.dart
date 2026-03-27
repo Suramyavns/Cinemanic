@@ -15,12 +15,12 @@ class TrendingDataClass {
 
   factory TrendingDataClass.fromJson(Map<String, dynamic> json) {
     return TrendingDataClass(
-      page: json['page'] as int,
-      results: (json['results'] as List<dynamic>)
+      page: json['page'] as int? ?? 0,
+      results: (json['results'] as List<dynamic>? ?? [])
           .map((item) => MediaItem.fromJson(item as Map<String, dynamic>))
           .toList(),
-      totalPages: json['total_pages'] as int,
-      totalResults: json['total_results'] as int,
+      totalPages: json['total_pages'] as int? ?? 0,
+      totalResults: json['total_results'] as int? ?? 0,
     );
   }
 
@@ -88,25 +88,25 @@ class MediaItem {
         : MediaType.unknown;
 
     return MediaItem(
-      adult: json['adult'] as bool,
+      adult: json['adult'] as bool? ?? false,
       backdropPath: json['backdrop_path'] as String?,
-      id: json['id'] as int,
+      id: (json['id'] as num? ?? 0).toInt(),
       title: (json['title'] ?? json['name'] ?? '') as String,
-      originalLanguage: json['original_language'] as String,
+      originalLanguage: json['original_language'] as String? ?? '',
       originalTitle:
           (json['original_title'] ?? json['original_name'] ?? '') as String,
-      overview: json['overview'] as String,
+      overview: json['overview'] as String? ?? '',
       posterPath: json['poster_path'] as String?,
       mediaType: mediaType,
-      genreIds: (json['genre_ids'] as List<dynamic>)
+      genreIds: (json['genre_ids'] as List<dynamic>? ?? [])
           .map((e) => e as int)
           .toList(),
-      popularity: (json['popularity'] as num).toDouble(),
+      popularity: (json['popularity'] as num? ?? 0).toDouble(),
       releaseDate: json['release_date'] as String?,
       firstAirDate: json['first_air_date'] as String?,
       video: json['video'] as bool?,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: json['vote_count'] as int,
+      voteAverage: (json['vote_average'] as num? ?? 0).toDouble(),
+      voteCount: json['vote_count'] as int? ?? 0,
       originCountry: (json['origin_country'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
