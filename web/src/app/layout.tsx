@@ -1,5 +1,6 @@
 import NavbarWrapper from "@/components/NavbarWrapper";
 import AuthGuard from "@/components/AuthGuard";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
             {children}
           </NavbarWrapper>
         </AuthGuard>
+        <Analytics />
       </body>
     </html>
   );
