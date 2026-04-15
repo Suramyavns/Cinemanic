@@ -4,6 +4,7 @@ import ContentCard from './ContentCard';
 import { ChevronRight } from 'lucide-react';
 import { imageUrlBuilder } from '@/lib/images';
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface MediaRowProps {
   title: string;
@@ -15,6 +16,8 @@ interface MediaRowProps {
 
 export default function MediaRow({ title, data, mediaType, onCardClick, viewMoreHref }: MediaRowProps) {
   if (!data || data.length === 0) return null;
+
+  const sliceEnd = mediaType == 'watchlist'? 10: undefined;
 
   const getMediaType = (index: number) => {
     if(mediaType == 'trending'){
@@ -46,7 +49,7 @@ export default function MediaRow({ title, data, mediaType, onCardClick, viewMore
       </div>
 
       <div className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar pb-4 -mx-4 px-4 md:-mx-8 md:px-8">
-        {data.slice(0, 10).map((item, index) => (
+        {data.slice(0, sliceEnd).map((item, index) => (
           <ContentCard
             key={item.id}
             imageSrc={imageUrlBuilder(item.posterPath || item.poster_path)}
