@@ -100,8 +100,8 @@ class _ContentRowWidgetState extends State<ContentRowWidget> {
               spacing: 16,
               children: [
                 ...List.generate(
-                  results.length > 10
-                      ? (widget.mediaType == 'watchlist' ? results.length : 10)
+                  results.length > 10 && widget.mediaType != 'watchlist'
+                      ? 10
                       : results.length,
                   (index) {
                     return ContentCardWidget(
