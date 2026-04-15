@@ -17,7 +17,7 @@ interface MediaRowProps {
 export default function MediaRow({ title, data, mediaType, onCardClick, viewMoreHref }: MediaRowProps) {
   if (!data || data.length === 0) return null;
 
-  const sliceEnd = mediaType == 'watchlist'? 10: undefined;
+  const sliceEnd = mediaType == 'watchlist' ? undefined : 10;
 
   const getMediaType = (index: number) => {
     if(mediaType == 'trending'){

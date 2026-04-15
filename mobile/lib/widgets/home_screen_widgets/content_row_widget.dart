@@ -99,18 +99,23 @@ class _ContentRowWidgetState extends State<ContentRowWidget> {
             child: Row(
               spacing: 16,
               children: [
-                ...List.generate(results.length > 10 ? 10 : results.length, (
-                  index,
-                ) {
-                  return ContentCardWidget(
-                    imageSrc: imageUrlBuilder(results[index].posterPath ?? ''),
-                    contentId: widget.mediaType == 'watchlist'
-                        ? results[index].mediaId
-                        : results[index].id,
-                    mediaType: getMediaType(index),
-                    onReturn: widget.onReturn,
-                  );
-                }),
+                ...List.generate(
+                  results.length > 10
+                      ? (widget.mediaType == 'watchlist' ? results.length : 10)
+                      : results.length,
+                  (index) {
+                    return ContentCardWidget(
+                      imageSrc: imageUrlBuilder(
+                        results[index].posterPath ?? '',
+                      ),
+                      contentId: widget.mediaType == 'watchlist'
+                          ? results[index].mediaId
+                          : results[index].id,
+                      mediaType: getMediaType(index),
+                      onReturn: widget.onReturn,
+                    );
+                  },
+                ),
               ],
             ),
           ),
